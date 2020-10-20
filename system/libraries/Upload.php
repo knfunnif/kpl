@@ -328,7 +328,7 @@ class CI_Upload {
 					{
 						$this->{'set_'.$key}($config[$key]);
 					}
-					else
+					else 
 					{
 						$this->$key = $config[$key];
 					}
@@ -690,9 +690,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_max_filesize($n)
+	public function set_max_filesize($n01)
 	{
-		$this->max_size = ($n < 0) ? 0 : (int) $n;
+		$this->max_size = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -707,9 +707,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	protected function set_max_size($n)
+	protected function set_max_size($n01)
 	{
-		return $this->set_max_filesize($n);
+		return $this->set_max_filesize($n01);
 	}
 
 	// --------------------------------------------------------------------
@@ -720,9 +720,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_max_filename($n)
+	public function set_max_filename($n01)
 	{
-		$this->max_filename = ($n < 0) ? 0 : (int) $n;
+		$this->max_filename = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -734,9 +734,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_max_width($n)
+	public function set_max_width($n01)
 	{
-		$this->max_width = ($n < 0) ? 0 : (int) $n;
+		$this->max_width = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -748,9 +748,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_max_height($n)
+	public function set_max_height($n01)
 	{
-		$this->max_height = ($n < 0) ? 0 : (int) $n;
+		$this->max_height = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -762,9 +762,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_min_width($n)
+	public function set_min_width($n01)
 	{
-		$this->min_width = ($n < 0) ? 0 : (int) $n;
+		$this->min_width = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -776,9 +776,9 @@ class CI_Upload {
 	 * @param	int	$n
 	 * @return	CI_Upload
 	 */
-	public function set_min_height($n)
+	public function set_min_height($n01)
 	{
-		$this->min_height = ($n < 0) ? 0 : (int) $n;
+		$this->min_height = ($n01 < 0) ? 0 : (int) $n01;
 		return $this;
 	}
 
@@ -812,14 +812,14 @@ class CI_Upload {
 	{
 		if ($this->is_image() && function_exists('getimagesize'))
 		{
-			if (FALSE !== ($D = @getimagesize($path)))
+			if (FALSE !== ($D01 = @getimagesize($path)))
 			{
 				$types = array(1 => 'gif', 2 => 'jpeg', 3 => 'png');
 
-				$this->image_width	= $D[0];
-				$this->image_height	= $D[1];
-				$this->image_type	= isset($types[$D[2]]) ? $types[$D[2]] : 'unknown';
-				$this->image_size_str	= $D[3]; // string containing height and width
+				$this->image_width	= $D01[0];
+				$this->image_height	= $D01[1];
+				$this->image_type	= isset($types[$D01[2]]) ? $types[$D01[2]] : 'unknown';
+				$this->image_size_str	= $D01[3]; // string containing height and width
 			}
 		}
 
@@ -949,24 +949,24 @@ class CI_Upload {
 
 		if (function_exists('getimagesize'))
 		{
-			$D = @getimagesize($this->file_temp);
+			$D01 = @getimagesize($this->file_temp);
 
-			if ($this->max_width > 0 && $D[0] > $this->max_width)
+			if ($this->max_width > 0 && $D01[0] > $this->max_width)
 			{
 				return FALSE;
 			}
 
-			if ($this->max_height > 0 && $D[1] > $this->max_height)
+			if ($this->max_height > 0 && $D01[1] > $this->max_height)
 			{
 				return FALSE;
 			}
 
-			if ($this->min_width > 0 && $D[0] < $this->min_width)
+			if ($this->min_width > 0 && $D01[0] < $this->min_width)
 			{
 				return FALSE;
 			}
 
-			if ($this->min_height > 0 && $D[1] < $this->min_height)
+			if ($this->min_height > 0 && $D01[1] < $this->min_height)
 			{
 				return FALSE;
 			}

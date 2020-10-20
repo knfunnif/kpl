@@ -257,16 +257,16 @@ if ( ! function_exists('get_config'))
 			elseif ( ! $found)
 			{
 				set_status_header(503);
-				echo 'The configuration file does not exist.';
-				exit(3); // EXIT_CONFIG
+					echo 'The configuration file does not exist.';
+						exit(3); // EXIT_CONFIG
 			}
 
 			// Does the $config array exist in the file?
 			if ( ! isset($config) OR ! is_array($config))
 			{
 				set_status_header(503);
-				echo 'Your config file does not appear to be formatted correctly.';
-				exit(3); // EXIT_CONFIG
+					echo 'Your config file does not appear to be formatted correctly.';
+						exit(3); // EXIT_CONFIG
 			}
 		}
 

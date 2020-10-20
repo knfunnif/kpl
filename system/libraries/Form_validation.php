@@ -964,9 +964,9 @@ class CI_Form_validation {
 		if (is_array($field))
 		{
 			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($field as &$v)
+			foreach ($field as &$v01)
 			{
-				if ($value === $v)
+				if ($value === $v01)
 				{
 					return ' selected="selected"';
 				}
@@ -1007,9 +1007,9 @@ class CI_Form_validation {
 		if (is_array($field))
 		{
 			// Note: in_array('', array(0)) returns TRUE, do not use it
-			foreach ($field as &$v)
+			foreach ($field as &$v01)
 			{
-				if ($value === $v)
+				if ($value === $v01)
 				{
 					return ' checked="checked"';
 				}

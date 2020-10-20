@@ -131,9 +131,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _blur($element = 'this', $js = '')
+	protected function _blur($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'blur');
+		return $this->_add_event($element, $js1, 'blur');
 	}
 
 	// --------------------------------------------------------------------
@@ -147,9 +147,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _change($element = 'this', $js = '')
+	protected function _change($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'change');
+		return $this->_add_event($element, $js1, 'change');
 	}
 
 	// --------------------------------------------------------------------
@@ -164,16 +164,16 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	bool	whether or not to return false
 	 * @return	string
 	 */
-	protected function _click($element = 'this', $js = '', $ret_false = TRUE)
+	protected function _click($element = 'this', $js1 = '', $ret_false = TRUE)
 	{
-		is_array($js) OR $js = array($js);
+		is_array($js1) OR $js1 = array($js1);
 
 		if ($ret_false)
 		{
-			$js[] = 'return false;';
+			$js1[] = 'return false;';
 		}
 
-		return $this->_add_event($element, $js, 'click');
+		return $this->_add_event($element, $js1, 'click');
 	}
 
 	// --------------------------------------------------------------------
@@ -187,9 +187,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _dblclick($element = 'this', $js = '')
+	protected function _dblclick($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'dblclick');
+		return $this->_add_event($element, $js1, 'dblclick');
 	}
 
 	// --------------------------------------------------------------------
@@ -203,9 +203,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _error($element = 'this', $js = '')
+	protected function _error($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'error');
+		return $this->_add_event($element, $js1, 'error');
 	}
 
 	// --------------------------------------------------------------------
@@ -219,9 +219,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _focus($element = 'this', $js = '')
+	protected function _focus($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'focus');
+		return $this->_add_event($element, $js1, 'focus');
 	}
 
 	// --------------------------------------------------------------------
@@ -256,9 +256,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _keydown($element = 'this', $js = '')
+	protected function _keydown($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'keydown');
+		return $this->_add_event($element, $js1, 'keydown');
 	}
 
 	// --------------------------------------------------------------------
@@ -272,9 +272,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _keyup($element = 'this', $js = '')
+	protected function _keyup($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'keyup');
+		return $this->_add_event($element, $js1, 'keyup');
 	}
 
 	// --------------------------------------------------------------------
@@ -288,9 +288,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _load($element = 'this', $js = '')
+	protected function _load($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'load');
+		return $this->_add_event($element, $js1, 'load');
 	}
 
 	// --------------------------------------------------------------------
@@ -304,9 +304,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _mousedown($element = 'this', $js = '')
+	protected function _mousedown($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'mousedown');
+		return $this->_add_event($element, $js1, 'mousedown');
 	}
 
 	// --------------------------------------------------------------------
@@ -320,9 +320,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _mouseout($element = 'this', $js = '')
+	protected function _mouseout($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'mouseout');
+		return $this->_add_event($element, $js1, 'mouseout');
 	}
 
 	// --------------------------------------------------------------------
@@ -336,9 +336,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _mouseover($element = 'this', $js = '')
+	protected function _mouseover($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'mouseover');
+		return $this->_add_event($element, $js1, 'mouseover');
 	}
 
 	// --------------------------------------------------------------------
@@ -352,9 +352,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _mouseup($element = 'this', $js = '')
+	protected function _mouseup($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'mouseup');
+		return $this->_add_event($element, $js1, 'mouseup');
 	}
 
 	// --------------------------------------------------------------------
@@ -374,9 +374,9 @@ class CI_Jquery extends CI_Javascript {
 			$array_js = array($array_js);
 		}
 
-		foreach ($array_js as $js)
+		foreach ($array_js as $js1)
 		{
-			$this->jquery_code_for_compile[] = "\t".$js."\n";
+			$this->jquery_code_for_compile[] = "\t".$js1."\n";
 		}
 	}
 
@@ -391,9 +391,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _resize($element = 'this', $js = '')
+	protected function _resize($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'resize');
+		return $this->_add_event($element, $js1, 'resize');
 	}
 
 	// --------------------------------------------------------------------
@@ -407,9 +407,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _scroll($element = 'this', $js = '')
+	protected function _scroll($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'scroll');
+		return $this->_add_event($element, $js1, 'scroll');
 	}
 
 	// --------------------------------------------------------------------
@@ -423,9 +423,9 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The code to execute
 	 * @return	string
 	 */
-	protected function _unload($element = 'this', $js = '')
+	protected function _unload($element = 'this', $js1 = '')
 	{
-		return $this->_add_event($element, $js, 'unload');
+		return $this->_add_event($element, $js1, 'unload');
 	}
 
 	// --------------------------------------------------------------------
@@ -929,14 +929,14 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	The event to pass
 	 * @return	string
 	 */
-	protected function _add_event($element, $js, $event)
+	protected function _add_event($element, $js1, $event)
 	{
-		if (is_array($js))
+		if (is_array($js1))
 		{
-			$js = implode("\n\t\t", $js);
+			$js1 = implode("\n\t\t", $js1);
 		}
 
-		$event = "\n\t$(".$this->_prep_element($element).').'.$event."(function(){\n\t\t{$js}\n\t});\n";
+		$event = "\n\t$(".$this->_prep_element($element).').'.$event."(function(){\n\t\t{$js1}\n\t});\n";
 		$this->jquery_code_for_compile[] = $event;
 		return $event;
 	}
@@ -999,11 +999,11 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	array	$js
 	 * @return	void
 	 */
-	protected function _document_ready($js)
+	protected function _document_ready($js1)
 	{
-		is_array($js) OR $js = array($js);
+		is_array($js1) OR $js1 = array($js1);
 
-		foreach ($js as $script)
+		foreach ($js1 as $script)
 		{
 			$this->jquery_code_for_compile[] = $script;
 		}

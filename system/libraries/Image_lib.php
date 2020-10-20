@@ -1073,11 +1073,11 @@ class CI_Image_lib {
 
 				while ($left < $right)
 				{
-					$cl = imagecolorat($src_img, $left, $i);
-					$cr = imagecolorat($src_img, $right, $i);
+					$cl01 = imagecolorat($src_img, $left, $i);
+					$cr01 = imagecolorat($src_img, $right, $i);
 
-					imagesetpixel($src_img, $left, $i, $cr);
-					imagesetpixel($src_img, $right, $i, $cl);
+					imagesetpixel($src_img, $left, $i, $cr01);
+					imagesetpixel($src_img, $right, $i, $cl01);
 
 					$left++;
 					$right--;

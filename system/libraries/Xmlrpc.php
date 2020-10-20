@@ -727,7 +727,7 @@ class XML_RPC_Client extends CI_Xmlrpc
 		}
 
 		$r = "\r\n";
-		$op = 'POST '.$this->path.' HTTP/1.0'.$r
+		$op1 = 'POST '.$this->path.' HTTP/1.0'.$r
 			.'Host: '.$this->server.$r
 			.'Content-Type: text/xml'.$r
 			.(isset($this->username, $this->password) ? 'Authorization: Basic '.base64_encode($this->username.':'.$this->password).$r : '')
@@ -737,9 +737,9 @@ class XML_RPC_Client extends CI_Xmlrpc
 
 		stream_set_timeout($fp, $this->timeout); // set timeout for subsequent operations
 
-		for ($written = $timestamp = 0, $length = strlen($op); $written < $length; $written += $result)
+		for ($written = $timestamp = 0, $length = strlen($op1); $written < $length; $written += $result)
 		{
-			if (($result = fwrite($fp, substr($op, $written))) === FALSE)
+			if (($result = fwrite($fp, substr($op1, $written))) === FALSE)
 			{
 				break;
 			}
@@ -1816,51 +1816,51 @@ class XML_RPC_Values extends CI_Xmlrpc
 	 */
 	public function serializedata($typ, $val)
 	{
-		$rs = '';
+		$rs1 = '';
 
 		switch ($this->xmlrpcTypes[$typ])
 		{
 			case 3:
 				// struct
-				$rs .= "<struct>\n";
+				$rs1 .= "<struct>\n";
 				reset($val);
 				foreach ($val as $key2 => &$val2)
 				{
-					$rs .= "<member>\n<name>{$key2}</name>\n".$this->serializeval($val2)."</member>\n";
+					$rs1 .= "<member>\n<name>{$key2}</name>\n".$this->serializeval($val2)."</member>\n";
 				}
-				$rs .= '</struct>';
+				$rs1 .= '</struct>';
 				break;
 			case 2:
 				// array
-				$rs .= "<array>\n<data>\n";
+				$rs1 .= "<array>\n<data>\n";
 				for ($i = 0, $c = count($val); $i < $c; $i++)
 				{
-					$rs .= $this->serializeval($val[$i]);
+					$rs1 .= $this->serializeval($val[$i]);
 				}
-				$rs .= "</data>\n</array>\n";
+				$rs1 .= "</data>\n</array>\n";
 				break;
 			case 1:
 				// others
 				switch ($typ)
 				{
 					case $this->xmlrpcBase64:
-						$rs .= '<'.$typ.'>'.base64_encode( (string) $val).'</'.$typ.">\n";
+						$rs1 .= '<'.$typ.'>'.base64_encode( (string) $val).'</'.$typ.">\n";
 						break;
 					case $this->xmlrpcBoolean:
-						$rs .= '<'.$typ.'>'.( (bool) $val ? '1' : '0').'</'.$typ.">\n";
+						$rs1 .= '<'.$typ.'>'.( (bool) $val ? '1' : '0').'</'.$typ.">\n";
 						break;
 					case $this->xmlrpcString:
-						$rs .= '<'.$typ.'>'.htmlspecialchars( (string) $val).'</'.$typ.">\n";
+						$rs1 .= '<'.$typ.'>'.htmlspecialchars( (string) $val).'</'.$typ.">\n";
 						break;
 					default:
-						$rs .= '<'.$typ.'>'.$val.'</'.$typ.">\n";
+						$rs1 .= '<'.$typ.'>'.$val.'</'.$typ.">\n";
 						break;
 				}
 			default:
 				break;
 		}
 
-		return $rs;
+		return $rs1;
 	}
 
 	// --------------------------------------------------------------------

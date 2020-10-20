@@ -78,12 +78,10 @@ if ( ! function_exists('array_column'))
 			elseif ($type === 'object' && method_exists($column_key, '__toString'))
 			{
 				$column_key = (string) $column_key;
+				return;
 			}
-			else
-			{
 				trigger_error('array_column(): The column key should be either a string or an integer', E_USER_WARNING);
 				return FALSE;
-			}
 		}
 
 		if ( ! in_array($type = gettype($index_key), array('integer', 'string', 'NULL'), TRUE))
