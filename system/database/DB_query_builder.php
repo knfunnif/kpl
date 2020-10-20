@@ -562,12 +562,12 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 				$joints = $joints[0];
 				array_unshift($joints, array('', 0));
 
-				for ($i = count($joints) - 1, $pos = strlen($cond); $i >= 0; $i--)
+				for ($i01 = count($joints) - 1, $pos = strlen($cond); $i01 >= 0; $i01--)
 				{
-					$joints[$i][1] += strlen($joints[$i][0]); // offset
-					$conditions[$i] = substr($cond, $joints[$i][1], $pos - $joints[$i][1]);
-					$pos = $joints[$i][1] - strlen($joints[$i][0]);
-					$joints[$i] = $joints[$i][0];
+					$joints[$i01][1] += strlen($joints[$i01][0]); // offset
+					$conditions[$i01] = substr($cond, $joints[$i01][1], $pos - $joints[$i01][1]);
+					$pos = $joints[$i01][1] - strlen($joints[$i01][0]);
+					$joints[$i01] = $joints[$i01][0];
 				}
 			}
 			else
@@ -577,13 +577,13 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			}
 
 			$cond = ' ON ';
-			for ($i = 0, $c = count($conditions); $i < $c; $i++)
+			for ($i01 = 0, $c = count($conditions); $i01 < $c; $i01++)
 			{
-				$operator = $this->_get_operator($conditions[$i]);
-				$cond .= $joints[$i];
-				$cond .= preg_match("/(\(*)?([\[\]\w\.'-]+)".preg_quote($operator)."(.*)/i", $conditions[$i], $match)
+				$operator = $this->_get_operator($conditions[$i01]);
+				$cond .= $joints[$i01];
+				$cond .= preg_match("/(\(*)?([\[\]\w\.'-]+)".preg_quote($operator)."(.*)/i", $conditions[$i01], $match)
 					? $match[1].$this->protect_identifiers($match[2]).$operator.$this->protect_identifiers($match[3])
-					: $conditions[$i];
+					: $conditions[$i01];
 			}
 		}
 
@@ -1513,9 +1513,9 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 
 		// Batch this baby
 		$affected_rows = 0;
-		for ($i = 0, $total = count($this->qb_set); $i < $total; $i += $batch_size)
+		for ($i01 = 0, $total = count($this->qb_set); $i01 < $total; $i01 += $batch_size)
 		{
-			if ($this->query($this->_insert_batch($this->protect_identifiers($table, TRUE, $escape, FALSE), $this->qb_keys, array_slice($this->qb_set, $i, $batch_size))))
+			if ($this->query($this->_insert_batch($this->protect_identifiers($table, TRUE, $escape, FALSE), $this->qb_keys, array_slice($this->qb_set, $i01, $batch_size))))
 			{
 				$affected_rows += $this->affected_rows();
 			}
@@ -1930,9 +1930,9 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 
 		// Batch this baby
 		$affected_rows = 0;
-		for ($i = 0, $total = count($this->qb_set_ub); $i < $total; $i += $batch_size)
+		for ($i01 = 0, $total = count($this->qb_set_ub); $i01 < $total; $i01 += $batch_size)
 		{
-			if ($this->query($this->_update_batch($this->protect_identifiers($table, TRUE, NULL, FALSE), array_slice($this->qb_set_ub, $i, $batch_size), $index)))
+			if ($this->query($this->_update_batch($this->protect_identifiers($table, TRUE, NULL, FALSE), array_slice($this->qb_set_ub, $i01, $batch_size), $index)))
 			{
 				$affected_rows += $this->affected_rows();
 			}
@@ -2391,23 +2391,23 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	{
 		if (count($this->$qb_key) > 0)
 		{
-			for ($i = 0, $c = count($this->$qb_key); $i < $c; $i++)
+			for ($i01 = 0, $c = count($this->$qb_key); $i01 < $c; $i01++)
 			{
 				// Is this condition already compiled?
-				if (is_string($this->{$qb_key}[$i]))
+				if (is_string($this->{$qb_key}[$i01]))
 				{
 					continue;
 				}
-				elseif ($this->{$qb_key}[$i]['escape'] === FALSE)
+				elseif ($this->{$qb_key}[$i01]['escape'] === FALSE)
 				{
-					$this->{$qb_key}[$i] = $this->{$qb_key}[$i]['condition'].(isset($this->{$qb_key}[$i]['value']) ? ' '.$this->{$qb_key}[$i]['value'] : '');
+					$this->{$qb_key}[$i01] = $this->{$qb_key}[$i01]['condition'].(isset($this->{$qb_key}[$i01]['value']) ? ' '.$this->{$qb_key}[$i01]['value'] : '');
 					continue;
 				}
 
 				// Split multiple conditions
 				$conditions = preg_split(
 					'/((?:^|\s+)AND\s+|(?:^|\s+)OR\s+)/i',
-					$this->{$qb_key}[$i]['condition'],
+					$this->{$qb_key}[$i01]['condition'],
 					-1,
 					PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
 				);
@@ -2439,7 +2439,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 						.' '.trim($matches[3]).$matches[4].$matches[5];
 				}
 
-				$this->{$qb_key}[$i] = implode('', $conditions).(isset($this->{$qb_key}[$i]['value']) ? ' '.$this->{$qb_key}[$i]['value'] : '');
+				$this->{$qb_key}[$i01] = implode('', $conditions).(isset($this->{$qb_key}[$i01]['value']) ? ' '.$this->{$qb_key}[$i01]['value'] : '');
 			}
 
 			return ($qb_key === 'qb_having' ? "\nHAVING " : "\nWHERE ")
@@ -2466,17 +2466,17 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	{
 		if (count($this->qb_groupby) > 0)
 		{
-			for ($i = 0, $c = count($this->qb_groupby); $i < $c; $i++)
+			for ($i01 = 0, $c = count($this->qb_groupby); $i01 < $c; $i01++)
 			{
 				// Is it already compiled?
-				if (is_string($this->qb_groupby[$i]))
+				if (is_string($this->qb_groupby[$i01]))
 				{
 					continue;
 				}
 
-				$this->qb_groupby[$i] = ($this->qb_groupby[$i]['escape'] === FALSE OR $this->_is_literal($this->qb_groupby[$i]['field']))
-					? $this->qb_groupby[$i]['field']
-					: $this->protect_identifiers($this->qb_groupby[$i]['field']);
+				$this->qb_groupby[$i01] = ($this->qb_groupby[$i01]['escape'] === FALSE OR $this->_is_literal($this->qb_groupby[$i01]['field']))
+					? $this->qb_groupby[$i01]['field']
+					: $this->protect_identifiers($this->qb_groupby[$i01]['field']);
 			}
 
 			return "\nGROUP BY ".implode(', ', $this->qb_groupby);
@@ -2505,19 +2505,19 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			return '';
 		}
 
-		for ($i = 0, $c = count($this->qb_orderby); $i < $c; $i++)
+		for ($i01 = 0, $c = count($this->qb_orderby); $i01 < $c; $i01++)
 		{
-			if (is_string($this->qb_orderby[$i]))
+			if (is_string($this->qb_orderby[$i01]))
 			{
 				continue;
 			}
 
-			if ($this->qb_orderby[$i]['escape'] !== FALSE && ! $this->_is_literal($this->qb_orderby[$i]['field']))
+			if ($this->qb_orderby[$i01]['escape'] !== FALSE && ! $this->_is_literal($this->qb_orderby[$i01]['field']))
 			{
-				$this->qb_orderby[$i]['field'] = $this->protect_identifiers($this->qb_orderby[$i]['field']);
+				$this->qb_orderby[$i01]['field'] = $this->protect_identifiers($this->qb_orderby[$i01]['field']);
 			}
 
-			$this->qb_orderby[$i] = $this->qb_orderby[$i]['field'].$this->qb_orderby[$i]['direction'];
+			$this->qb_orderby[$i01] = $this->qb_orderby[$i01]['field'].$this->qb_orderby[$i01]['direction'];
 		}
 
 		return "\nORDER BY ".implode(', ', $this->qb_orderby);
@@ -2579,10 +2579,10 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			// There are some built in keys we need to ignore for this conversion
 			if ($val !== '_parent_name')
 			{
-				$i = 0;
+				$i01 = 0;
 				foreach ($out[$val] as $data)
 				{
-					$array[$i++][$val] = $data;
+					$array[$i01++][$val] = $data;
 				}
 			}
 		}
@@ -2675,14 +2675,14 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			$qb_cache_var	= 'qb_cache_'.$val;
 			$qb_new 	= $this->$qb_cache_var;
 
-			for ($i = 0, $c = count($this->$qb_variable); $i < $c; $i++)
+			for ($i01 = 0, $c = count($this->$qb_variable); $i01 < $c; $i01++)
 			{
-				if ( ! in_array($this->{$qb_variable}[$i], $qb_new, TRUE))
+				if ( ! in_array($this->{$qb_variable}[$i01], $qb_new, TRUE))
 				{
-					$qb_new[] = $this->{$qb_variable}[$i];
+					$qb_new[] = $this->{$qb_variable}[$i01];
 					if ($val === 'select')
 					{
-						$qb_no_escape[] = $this->qb_no_escape[$i];
+						$qb_no_escape[] = $this->qb_no_escape[$i01];
 					}
 				}
 			}

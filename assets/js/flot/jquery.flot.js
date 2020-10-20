@@ -408,15 +408,15 @@ Licensed under the MIT license.
 
 		// Tweak the div's position to match the text's alignment
 
-		if (halign == "center") {
+		if (halign === "center") {
 			x -= info.width / 2;
-		} else if (halign == "right") {
+		} else if (halign === "right") {
 			x -= info.width;
 		}
 
-		if (valign == "middle") {
+		if (valign === "middle") {
 			y -= info.height / 2;
-		} else if (valign == "bottom") {
+		} else if (valign === "bottom") {
 			y -= info.height;
 		}
 
@@ -450,7 +450,7 @@ Licensed under the MIT license.
 		position.element.css({
 			top: Math.round(y),
 			left: Math.round(x),
-			'text-align': halign	// In case the text wraps
+			"text-align": halign	// In case the text wraps
 		});
 	};
 

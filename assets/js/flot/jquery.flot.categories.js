@@ -97,11 +97,12 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
     function getNextIndex(categories) {
         var index = -1;
         
-        for (var v in categories)
+        for (var v in categories){
             if (categories[v] > index)
                 index = categories[v];
 
-        return index + 1;
+            return index + 1;
+        }
     }
 
     function categoriesTickGenerator(axis) {

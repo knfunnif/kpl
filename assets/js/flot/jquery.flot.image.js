@@ -162,9 +162,9 @@ Google Maps).
             // clip
             if (x1 == x2 || y1 == y2 ||
                 x1 >= xaxis.max || x2 <= xaxis.min ||
-                y1 >= yaxis.max || y2 <= yaxis.min)
+                y1 >= yaxis.max || y2 <= yaxis.min) {
                 continue;
-
+            }
             var sx1 = 0, sy1 = 0, sx2 = img.width, sy2 = img.height;
             if (x1 < xaxis.min) {
                 sx1 += (sx2 - sx1) * (xaxis.min - x1) / (x2 - x1);

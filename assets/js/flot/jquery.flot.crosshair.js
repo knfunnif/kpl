@@ -121,9 +121,9 @@ The plugin also adds four public methods:
         }
         
         plot.hooks.bindEvents.push(function (plot, eventHolder) {
-            if (!plot.getOptions().crosshair.mode)
+            if (!plot.getOptions().crosshair.mode){
                 return;
-
+            }
             eventHolder.mouseout(onMouseOut);
             eventHolder.mousemove(onMouseMove);
         });
